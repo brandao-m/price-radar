@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from app.core.database import create_db_and_tables
 from app.api.products import router as products_router
 from app.api.stores import router as stores_router
+from app.api.price_history import router as price_router
 
 app = FastAPI(
     title='Radar de Preços API',
@@ -19,6 +20,7 @@ def on_startup():
 
 app.include_router(products_router)
 app.include_router(stores_router)
+app.include_router(price_router)
 
 
 @app.get('/')
