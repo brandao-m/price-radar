@@ -1,6 +1,7 @@
 from sqlmodel import Session, select
 from app.models.price_history import PriceHistory
 from datetime import datetime, timedelta
+from app.models.store import Store
 
 def calculate_price_statistics(product_id: int, session: Session):
 
@@ -66,3 +67,27 @@ def get_price_history(product_id: int, session: Session):
     ]
 
     return history
+
+def get_product_store_prices(product_id: int, session: Session):
+
+    statement = (
+        select(Store.name, PriceHistory.price, PriceHistory.collected_at)
+        .join(PriceHistory, PriceHistory.store_id == Store.id)
+        .where(PriceHistory.product_id == product_id)
+        .order_by(PriceHistory.collected_at.desc())
+    )
+
+    results = session.exec(statement).all()
+
+    store_prices = {}
+
+    for store_name, price, collected_at in results:
+        if store_name not in store_prices:
+            store_prices[store_name] = price
+
+    response = [
+        {'store': store, 'price': price}
+        for store, price in store_prices.items()
+    ]
+
+    return response

@@ -3,8 +3,8 @@ from sqlmodel import Session, select
 
 from app.core.database import get_session
 from app.models.product import Product
-from app.services.price_analysis import calculate_price_statistics, get_price_history
-from app.schemas.product import ProductCreate, ProductRead
+from app.services.price_analysis import calculate_price_statistics, get_price_history, get_product_store_prices
+from app.schemas.product import ProductCreate
 
 
 router = APIRouter(prefix='/products', tags=['Products'])
@@ -54,3 +54,14 @@ def get_product_price_history(product_id: int, session: Session = Depends(get_se
         return {'message': 'Nenhum histórico de preço encontrado'}
     
     return history
+
+
+@router.get('/{product_id}/stores')
+def get_product_stores(product_id: int, session: Session = Depends(get_session)):
+
+    stores = get_product_store_prices(product_id, session)
+
+    if not stores:
+        return {'message:' 'Nenhuma loja encontrada para este produto'}
+    
+    return stores
