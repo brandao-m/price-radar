@@ -46,3 +46,23 @@ def calculate_price_statistics(product_id: int, session: Session):
         'below_average_percent': below_average_percent,
         'price_status': price_status
     }
+
+def get_price_history(product_id: int, session: Session):
+
+    statement = (
+        select(PriceHistory)
+        .where(PriceHistory.product_id == product_id)
+        .order_by(PriceHistory.collected_at)
+    )
+
+    results = session.exec(statement).all()
+
+    history = [
+        {
+            'date': p.collected_at.isoformat(),
+            'price': p.price
+        }
+        for p in results
+    ]
+
+    return history
