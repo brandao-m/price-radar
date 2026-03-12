@@ -3,7 +3,7 @@ from sqlmodel import Session, select
 
 from app.core.database import get_session
 from app.models.product import Product
-from app.services.price_analysis import calculate_price_statistics, get_price_history, get_product_store_prices
+from app.services.price_analysis import calculate_price_statistics, get_price_history, get_product_store_prices, get_best_deal
 from app.schemas.product import ProductCreate
 
 
@@ -65,3 +65,14 @@ def get_product_stores(product_id: int, session: Session = Depends(get_session))
         return {'message:' 'Nenhuma loja encontrada para este produto'}
     
     return stores
+
+
+@router.get('/{product_id}/best-deal')
+def get_product_best_deal(product_id: int, session: Session = Depends(get_session)):
+
+    best_deal = get_best_deal(product_id, session)
+
+    if not best_deal:
+        return {'message': 'Nenhuma oferta encontrada para este produto'}
+    
+    return best_deal
