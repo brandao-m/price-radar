@@ -25,12 +25,24 @@ def calculate_price_statistics(product_id: int, session: Session):
 
     latest_price = results[-1].price
 
-    below_average_percent = ((average_price - latest_price) / average_price)
+    below_average_percent = ((average_price - latest_price) / average_price) * 100
+
+    below_average_percent = round(below_average_percent, 2)
+
+    if below_average_percent > 10:
+        price_status = 'excelente oportunidade'
+    elif below_average_percent > 5:
+        price_status = 'boa oportunidade'
+    elif below_average_percent >= 0:
+        price_status = 'preço normal'
+    else:
+        price_status = 'preço acima da média'
 
     return {
         'lowest_price': lowest_price,
         'average_price': round(average_price, 2),
         'lowest_last_90_days': lowest_last_90_days,
         'current_price': latest_price,
-        'below_average_percent': round(below_average_percent, 2)
+        'below_average_percent': below_average_percent,
+        'price_status': price_status
     }
