@@ -1,9 +1,7 @@
+import ProductsPage from "./pages/ProductsPage"
+
 function App() {
-  return (
-    <div>
-      <h1>Radar de Preços</h1>
-    </div>
-  )
+  return <ProductsPage />
 }
 
-export default App 
+export default App
