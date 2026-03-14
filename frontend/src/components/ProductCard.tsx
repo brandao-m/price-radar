@@ -1,4 +1,5 @@
 import type { Product } from "../types/Product"
+import { Link } from "react-router-dom"
 
 interface Props {
   product: Product
@@ -6,6 +7,8 @@ interface Props {
 
 function ProductCard({ product }: Props) {
   return (
+  <Link to={`/products/${product.id}`}>
+
     <div className="bg-white border rounded-xl p-4 shadow-sm hover:shadow-md transition cursor-pointer">
 
       {product.image_url && (
@@ -25,7 +28,9 @@ function ProductCard({ product }: Props) {
       </p>
 
     </div>
-  )
+
+  </Link>
+)
 }
 
 export default ProductCard
