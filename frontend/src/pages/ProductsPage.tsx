@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import type { Product } from "../types/Product"
 import { getProducts } from "../services/productsService"
 import ProductCard from "../components/ProductCard"
+import MainLayout from "../layouts/MainLayout"
 
 function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([])
@@ -16,7 +17,7 @@ function ProductsPage() {
   }, [])
 
   return (
-  <div className="max-w-6xl mx-auto p-6">
+  <MainLayout>
 
     <h1 className="text-3xl font-bold mb-6">
       Produtos
@@ -31,7 +32,7 @@ function ProductsPage() {
       ))}
     </div>
 
-  </div>
+  </MainLayout>
 )
 }
 
