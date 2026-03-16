@@ -28,11 +28,9 @@ function StoresList({ stores }: Props) {
                 <img
                   src={store.logo_url}
                   alt={store.store}
-                  className="h-8"
+                  className="h-8 w-auto object-contain"
                 />
               )}
-
-              <span>{store.store}</span>
 
             </div>
 
