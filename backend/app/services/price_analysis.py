@@ -71,7 +71,13 @@ def get_price_history(product_id: int, session: Session):
 def get_product_store_prices(product_id: int, session: Session):
 
     statement = (
-        select(Store.name, PriceHistory.price, PriceHistory.collected_at)
+        select(
+            Store.name,
+            Store.logo_url,
+            Store.store_url,
+            PriceHistory.price,
+            PriceHistory.collected_at
+        )
         .join(PriceHistory, PriceHistory.store_id == Store.id)
         .where(PriceHistory.product_id == product_id)
         .order_by(PriceHistory.collected_at.desc())
@@ -81,21 +87,28 @@ def get_product_store_prices(product_id: int, session: Session):
 
     store_prices = {}
 
-    for store_name, price, collected_at in results:
+    for store_name, logo_url, store_url, price, collected_at in results:
+
         if store_name not in store_prices:
-            store_prices[store_name] = price
 
-    response = [
-        {'store': store, 'price': price}
-        for store, price in store_prices.items()
-    ]
+            store_prices[store_name] = {
+                "store": store_name,
+                "price": price,
+                "logo_url": logo_url,
+                "store_url": store_url
+            }
 
-    return response
+    return list(store_prices.values())
 
 def get_best_deal(product_id: int, session: Session):
 
     statement = (
-        select(Store.name, PriceHistory.price)
+        select(
+            Store.name,
+            Store.logo_url,
+            Store.store_url,
+            PriceHistory.price
+        )
         .join(PriceHistory, PriceHistory.store_id == Store.id)
         .where(PriceHistory.product_id == product_id)
         .order_by(PriceHistory.price)
@@ -105,10 +118,12 @@ def get_best_deal(product_id: int, session: Session):
 
     if not results:
         return None
-    
-    best_store, best_price = results[0]
+
+    best_store, logo_url, store_url, best_price = results[0]
 
     return {
-        'store': best_store,
-        'price': best_price
+        "store": best_store,
+        "price": best_price,
+        "logo_url": logo_url,
+        "store_url": store_url
     }

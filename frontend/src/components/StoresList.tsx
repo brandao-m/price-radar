@@ -13,20 +13,36 @@ function StoresList({ stores }: Props) {
         Lojas
       </h2>
 
-      <ul className="space-y-2">
+      <ul className="space-y-3">
 
         {stores.map((store) => (
 
           <li
             key={store.store}
-            className="flex justify-between border-b pb-2"
+            className="flex items-center justify-between border-b pb-3"
           >
 
-            <span>{store.store}</span>
+            <div className="flex items-center gap-3">
 
-            <span className="font-semibold">
+              {store.logo_url && (
+                <img
+                  src={store.logo_url}
+                  alt={store.store}
+                  className="h-8"
+                />
+              )}
+
+              <span>{store.store}</span>
+
+            </div>
+
+            <a
+              href={store.store_url}
+              target="_blank"
+              className="font-semibold text-blue-600 hover:underline"
+            >
               R$ {store.price}
-            </span>
+            </a>
 
           </li>
 
