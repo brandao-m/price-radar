@@ -11,13 +11,13 @@ import { getPriceHistory } from "../services/pricesService"
 import { getStorePrices } from "../services/storesService"
 import { getBestDeal } from "../services/dealsService"
 import { getStatistics } from "../services/statisticsService"
-
+import { getProduct } from "../services/productsService"
 
 import type { PriceHistory } from "../types/PriceHistory"
 import type { StorePrice } from "../types/StorePrice"
 import type { BestDeal } from "../types/BestDeal"
 import type { Statistics } from "../types/Statistics"
-
+import type { Product } from "../types/Product"
 
 
 function ProductDetailPage() {
@@ -28,6 +28,7 @@ function ProductDetailPage() {
   const [stores, setStores] = useState<StorePrice[]>([])
   const [bestDeal, setBestDeal] = useState<BestDeal | null>(null)
   const [stats, setStats] = useState<Statistics | null>(null)
+  const [product, setProduct] = useState<Product | null>(null)
 
   useEffect(() => {
 
@@ -47,6 +48,9 @@ function ProductDetailPage() {
       const statsData = await getStatistics(id)
       setStats(statsData)
 
+      const productData = await getProduct(id)
+      setProduct(productData)
+
     }
 
     fetchHistory()
@@ -57,9 +61,35 @@ function ProductDetailPage() {
   return (
     <MainLayout>
 
-      <h1 className="text-3xl font-bold mb-6">
-        Produto {id}
+      {product && (
+
+  <div className="flex gap-8 items-start mb-10">
+
+    {product.image_url && (
+
+      <img
+        src={product.image_url}
+        alt={product.name}
+        className="w-64 rounded-xl shadow-md"
+      />
+
+    )}
+
+    <div>
+
+      <h1 className="text-4xl font-bold text-slate-800">
+        {product.name}
       </h1>
+
+      <p className="text-slate-500 mt-2 text-lg">
+        {product.category}
+      </p>
+
+    </div>
+
+  </div>
+
+)}
 
       <PriceChart data={history} />
       
