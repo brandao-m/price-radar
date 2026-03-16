@@ -9,7 +9,7 @@ function ProductCard({ product }: Props) {
   return (
     <Link to={`/products/${product.id}`}>
 
-      <div className="bg-white border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+      <div className="bg-white border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100">
 
         {product.image_url && (
           <img

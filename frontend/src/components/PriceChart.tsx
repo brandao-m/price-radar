@@ -34,7 +34,7 @@ function PriceChart({ data }: Props) {
           <Line
             type="monotone"
             dataKey="price"
-            stroke="#7c3aed"
+            stroke="#1EA7E1"
             strokeWidth={2}
           />
 

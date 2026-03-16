@@ -32,10 +32,6 @@ function BestDealCard({ deal }: Props) {
         R$ {deal.price}
       </p>
 
-      <p className="text-sm text-gray-500 mt-1">
-        {deal.store}
-      </p>
-
     </a>
   )
 }
