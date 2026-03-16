@@ -5,7 +5,6 @@ import MainLayout from "../layouts/MainLayout"
 
 import PriceChart from "../components/PriceChart"
 import StoresList from "../components/StoresList"
-import BestDealCard from "../components/BestDealCard"
 
 import { getPriceHistory } from "../services/pricesService"
 import { getStorePrices } from "../services/storesService"
@@ -26,7 +25,6 @@ function ProductDetailPage() {
 
   const [history, setHistory] = useState<PriceHistory[]>([])
   const [stores, setStores] = useState<StorePrice[]>([])
-  const [bestDeal, setBestDeal] = useState<BestDeal | null>(null)
   const [stats, setStats] = useState<Statistics | null>(null)
   const [product, setProduct] = useState<Product | null>(null)
 
@@ -41,9 +39,6 @@ function ProductDetailPage() {
 
       const storeData = await getStorePrices(id)
       setStores(storeData)
-
-      const dealData = await getBestDeal(id)
-      setBestDeal(dealData)
 
       const statsData = await getStatistics(id)
       setStats(statsData)
@@ -63,18 +58,24 @@ function ProductDetailPage() {
 
       {product && (
 
-  <div className="flex gap-8 items-start mb-10">
+  <div className="grid md:grid-cols-2 gap-10 mb-10 items-start">
 
-    {product.image_url && (
+    {/* Imagem do produto */}
+    <div>
 
-      <img
-        src={product.image_url}
-        alt={product.name}
-        className="w-64 rounded-xl shadow-md"
-      />
+      {product.image_url && (
 
-    )}
+        <img
+          src={product.image_url}
+          alt={product.name}
+          className="w-full max-w-sm rounded-xl shadow-md"
+        />
 
+      )}
+
+    </div>
+
+    {/* Informações do produto */}
     <div>
 
       <h1 className="text-4xl font-bold text-slate-800">
@@ -85,6 +86,10 @@ function ProductDetailPage() {
         {product.category}
       </p>
 
+      <div className="mt-6">
+        <StoresList stores={stores} />
+      </div>
+
     </div>
 
   </div>
@@ -93,31 +98,26 @@ function ProductDetailPage() {
 
       <PriceChart data={history} />
       
-      <div className="grid md:grid-cols-2 gap-6 mt-6">
+      <div className="grid md:grid-cols-2 gap-6 mt-10">
 
-        <StoresList stores={stores} />
+  {stats && (
 
-        <BestDealCard deal={bestDeal} />
+    <div className="bg-white p-4 rounded-xl shadow">
 
-     </div>
+      <h2 className="text-lg font-semibold mb-2">
+        Análise de preço
+      </h2>
 
-{stats && (
+      <p>Preço atual: R$ {stats.current_price}</p>
+      <p>Média histórica: R$ {stats.average_price}</p>
+      <p>Status: {stats.price_status}</p>
 
-  <div className="bg-white p-4 rounded-xl shadow mt-6">
+    </div>
 
-    <h2 className="text-lg font-semibold mb-2">
-      Análise de preço
-    </h2>
+  )}
 
-    <p>Preço atual: R$ {stats.current_price}</p>
+</div>
 
-    <p>Média histórica: R$ {stats.average_price}</p>
-
-    <p>Status: {stats.price_status}</p>
-
-  </div>
-
-)}
     </MainLayout>
   )
 }

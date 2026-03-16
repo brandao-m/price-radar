@@ -6,45 +6,70 @@ interface Props {
 
 function StoresList({ stores }: Props) {
 
+  const sortedStores = [...stores].sort((a, b) => a.price - b.price)
+
+  const bestPrice = sortedStores[0]?.price
+
   return (
-    <div className="bg-white p-4 rounded-xl shadow">
+    <div className="bg-white p-6 rounded-xl shadow">
 
       <h2 className="text-lg font-semibold mb-4">
-        Lojas
+        Ofertas
       </h2>
 
       <ul className="space-y-3">
 
-        {stores.map((store) => (
+        {sortedStores.map((store) => {
 
-          <li
-            key={store.store}
-            className="flex items-center justify-between border-b pb-3"
-          >
+          const isBestDeal = store.price === bestPrice
 
-            <div className="flex items-center gap-3">
+          return (
 
-              {store.logo_url && (
-                <img
-                  src={store.logo_url}
-                  alt={store.store}
-                  className="h-8 w-auto object-contain"
-                />
-              )}
-
-            </div>
-
-            <a
-              href={store.store_url}
-              target="_blank"
-              className="font-semibold text-blue-600 hover:underline"
+            <li
+              key={store.store}
+              className={`flex items-center justify-between p-4 rounded-lg border transition
+              ${isBestDeal ? "bg-green-50 border-green-300" : "bg-white border-gray-200"}`}
             >
-              R$ {store.price}
-            </a>
 
-          </li>
+              {/* logo da loja */}
+              <div className="flex items-center">
 
-        ))}
+                {store.logo_url && (
+                  <img
+                    src={store.logo_url}
+                    alt={store.store}
+                    className="h-8 w-auto object-contain"
+                  />
+                )}
+
+              </div>
+
+              {/* preço + botão */}
+              <div className="flex items-center gap-4">
+
+                <span
+                  className={`text-lg font-bold
+                  ${isBestDeal ? "text-green-600" : "text-slate-800"}`}
+                >
+                  R$ {store.price}
+                </span>
+
+                <a
+                  href={store.store_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition"
+                >
+                  Ir à loja
+                </a>
+
+              </div>
+
+            </li>
+
+          )
+
+        })}
 
       </ul>
 
