@@ -7,7 +7,7 @@ interface Props {
 
 function MainLayout({ children }: Props) {
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-[#F4F6F8]">
 
       <Navbar />
 
