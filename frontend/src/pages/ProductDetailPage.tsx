@@ -58,7 +58,7 @@ function ProductDetailPage() {
 
       {product && (
 
-  <div className="grid md:grid-cols-2 gap-10 mb-10 items-start">
+  <div className="mx-auto grid md:grid-cols-2 gap-6 mt-10 max-w-4xl">
 
     {/* Imagem do produto */}
     <div>

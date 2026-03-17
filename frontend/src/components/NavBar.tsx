@@ -18,14 +18,24 @@ function Navbar() {
 
         </Link>
 
-        {/* BARRA DE PESQUISA */}
-        <div className="flex-1">
+        {/* Barra de pesquisa */}
+        <div className="flex-1 flex justify-center">
 
-          <input
-            type="text"
-            placeholder="Pesquise no Radar de Preços"
-            className="w-full max-w-md px-4 py-2 rounded-lg bg-slate-100 text-slate-800 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+          <div className="relative w-full max-w-lg">
+
+            {/* Ícone de lupa */}
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">
+              🔍
+            </span>
+
+            <input
+              type="text"
+              placeholder="Pesquisar no Radar de Preços"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-100 text-slate-800 placeholder-slate-500 
+              focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            />
+
+          </div>
 
         </div>
 
