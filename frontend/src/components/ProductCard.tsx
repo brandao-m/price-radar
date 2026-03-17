@@ -9,13 +9,13 @@ function ProductCard({ product }: Props) {
   return (
     <Link to={`/products/${product.id}`}>
 
-      <div className="bg-white border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-gray-100">
+      <div className="bg-white rounded-xl shadow transition transform hover:-translate-y-1 hover:shadow-lg">
 
         {product.image_url && (
           <img
             src={product.image_url}
             alt={product.name}
-            className="w-full h-48 object-cover"
+            className="w-full h-60 object-contain p-4"
           />
         )}
 
