@@ -1,86 +1,65 @@
 # Radar de Preços
-
-Radar de Preços é uma plataforma para monitoramento de histórico de preços de produtos em diferentes lojas.
-
-O sistema permite registrar preços ao longo do tempo, visualizar o histórico de variação e identificar oportunidades de compra com base em análises como menor preço histórico, média de preços e variações recentes.
-
-Este projeto está sendo desenvolvido como parte de um portfólio de backend, com foco em construção de APIs robustas, organização de arquitetura e manipulação de dados históricos.
+Aplicação web de comparação de preços com histórico inteligente, desenvolvida com foco em performance, usabilidade e arquitetura escalável.
 
 ---
 
 ## Funcionalidades
-- Cadastro de produtos
-- Cadastro de lojas
-- Registro de preços ao longo do tempo
-- Consulta de histórico de preços
-- Base para geração de gráficos de variação de preços
-- Estrutura para análise de dados e identificação de oportunidades de compra
+- Catálogo de produtos
+- Comparação de preços entre lojas
+- Histórico de preços
+- Destaque automático da melhor oferta
+- Redirecionamento para lojas
+- Compartilhamento de produto
 
 ---
 
-## Tecnologias utilizadas
-Backend:
-- Python
+## Preview
+### Página inicial
+![Home](./frontend/public/screenshots/home.png)
+
+### Página do produto
+![Produto](./frontend/public/screenshots/product.png)
+
+---
+
+## Tecnologias
+### Backend
 - FastAPI
-- SQLModel
 - PostgreSQL
+- SQLModel
 
-Ferramentas:
-- Uvicorn
-- Git
-- GitHub
-
----
-
-## Estrutura do projeto
-```
-backend/
-app/
-api/
-core/
-models/
-repositories/
-schemas/
-services/
-```
+### Frontend
+- React
+- TypeScript
+- TailwindCSS
+- Axios
 
 ---
 
-## Endpoints atuais da API
-### Produtos
+## Como rodar o projeto
+### Backend
 ```
-POST /products
-GET /products
-GET /products/{id}
+cd backend
+uvicorn main:app --reload
 ```
-### Lojas
+### Frontend
 ```
-POST /stores
-GET /stores
-GET /stores/{id}
+cd frontend
+npm install
+npm run dev
 ```
-### Histórico de preços
-```
-POST /prices
-GET /prices
-GET /prices/product/{product_id}
-```
----
-
-## Próximos passos do projeto
-- Implementar motor de análise de preços
-- Cálculo de menor preço histórico
-- Cálculo de média de preços
-- Identificação de preços abaixo da média
-- Geração de dados para gráficos de histórico
-- Desenvolvimento do frontend da plataforma
 
 ---
 
 ## Objetivo do projeto
-Demonstrar habilidades em desenvolvimento backend com Python, construção de APIs REST, modelagem de dados e organização de arquitetura de software.
+Projeto desenvolvido com foco em:
+- construção de APIs REST
+- modelagem de dados
+- consumo de API no frontend
+- criação de interfaces modernas
 
 ---
 
-## Autor
-Marcus Brandão - Backend Developer - Python | APIs REST
+# Autor
+Marcus Brandão
+Backend Developer (Python | APIs REST)
