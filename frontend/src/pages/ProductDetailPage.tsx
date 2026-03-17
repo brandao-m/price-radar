@@ -8,13 +8,12 @@ import StoresList from "../components/StoresList"
 
 import { getPriceHistory } from "../services/pricesService"
 import { getStorePrices } from "../services/storesService"
-import { getBestDeal } from "../services/dealsService"
 import { getStatistics } from "../services/statisticsService"
 import { getProduct } from "../services/productsService"
+import { formatPrice } from "../utils/formatPrice"
 
 import type { PriceHistory } from "../types/PriceHistory"
 import type { StorePrice } from "../types/StorePrice"
-import type { BestDeal } from "../types/BestDeal"
 import type { Statistics } from "../types/Statistics"
 import type { Product } from "../types/Product"
 
@@ -75,7 +74,7 @@ function ProductDetailPage() {
 
     </div>
 
-    {/* Informações do produto */}
+    {/* SOBRE O PRODUTO */}
     <div>
 
       <h1 className="text-4xl font-bold text-slate-800">
@@ -108,8 +107,8 @@ function ProductDetailPage() {
         Análise de preço
       </h2>
 
-      <p>Preço atual: R$ {stats.current_price}</p>
-      <p>Média histórica: R$ {stats.average_price}</p>
+      <p>Preço atual: {formatPrice(stats.current_price)}</p>
+      <p>Média histórica: {formatPrice(stats.current_price)}</p>
       <p>Status: {stats.price_status}</p>
 
     </div>

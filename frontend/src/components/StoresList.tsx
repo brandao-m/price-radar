@@ -1,4 +1,5 @@
 import type { StorePrice } from "../types/StorePrice"
+import { formatPrice } from "../utils/formatPrice"
 
 interface Props {
   stores: StorePrice[]
@@ -51,7 +52,7 @@ function StoresList({ stores }: Props) {
                   className={`text-lg font-bold
                   ${isBestDeal ? "text-green-600" : "text-slate-800"}`}
                 >
-                  R$ {store.price}
+                  {formatPrice(store.price)}
                 </span>
 
                 <a
