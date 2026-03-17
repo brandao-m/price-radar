@@ -63,4 +63,4 @@ Projeto desenvolvido com foco em:
 ---
 
 # Autor
-Marcus Brandão - Desenvolvedor Backend com foco em Python e construção de APIs REST.
+Marcus Brandão - Backend dev - Python | APIs REST
