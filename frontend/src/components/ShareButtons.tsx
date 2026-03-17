@@ -13,7 +13,7 @@ function ShareButtons() {
   }
 
   return (
-    <div className="flex gap-3 mt-4">
+    <div className="flex justify-center gap-3 mt-4">
 
       <button
         onClick={shareWhatsApp}

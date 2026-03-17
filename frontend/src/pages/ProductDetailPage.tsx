@@ -9,13 +9,10 @@ import ShareButtons from "../components/ShareButtons"
 
 import { getPriceHistory } from "../services/pricesService"
 import { getStorePrices } from "../services/storesService"
-import { getStatistics } from "../services/statisticsService"
 import { getProduct } from "../services/productsService"
-import { formatPrice } from "../utils/formatPrice"
 
 import type { PriceHistory } from "../types/PriceHistory"
 import type { StorePrice } from "../types/StorePrice"
-import type { Statistics } from "../types/Statistics"
 import type { Product } from "../types/Product"
 
 
@@ -25,7 +22,6 @@ function ProductDetailPage() {
 
   const [history, setHistory] = useState<PriceHistory[]>([])
   const [stores, setStores] = useState<StorePrice[]>([])
-  const [stats, setStats] = useState<Statistics | null>(null)
   const [product, setProduct] = useState<Product | null>(null)
 
   useEffect(() => {
@@ -39,9 +35,6 @@ function ProductDetailPage() {
 
       const storeData = await getStorePrices(id)
       setStores(storeData)
-
-      const statsData = await getStatistics(id)
-      setStats(statsData)
 
       const productData = await getProduct(id)
       setProduct(productData)
@@ -60,7 +53,7 @@ function ProductDetailPage() {
 
   <div className="mx-auto grid md:grid-cols-2 gap-6 mt-10 max-w-4xl">
 
-    {/* Imagem do produto */}
+    {/* IMAGEM PRODUTO */}
     <div>
 
       {product.image_url && (
@@ -97,43 +90,11 @@ function ProductDetailPage() {
 
 )}
 
-      <div className="grid md:grid-cols-2 gap-6 mt-10">
+      <div className="mx-auto mt-10 max-w-3xl">
 
   <div className="bg-white p-4 rounded-xl shadow">
     <PriceChart data={history} />
   </div>
-
-  {stats && (
-
-    <div className="bg-white p-6 rounded-xl shadow flex flex-col justify-center">
-
-      <h2 className="text-lg font-semibold mb-4">
-        Análise de preço
-      </h2>
-
-      <p className="text-sm text-slate-500">
-        Menor preço histórico
-      </p>
-
-      <p className="text-xl font-bold">
-        {formatPrice(stats.lowest_price)}
-      </p>
-
-      <p className="text-sm text-slate-500 mt-3">
-        Média
-      </p>
-
-      <p className="text-lg font-semibold">
-        {formatPrice(stats.average_price)}
-      </p>
-
-      <p className="mt-4 text-green-600 font-medium">
-        {stats.price_status}
-      </p>
-
-    </div>
-
-  )}
 
 </div>
 
