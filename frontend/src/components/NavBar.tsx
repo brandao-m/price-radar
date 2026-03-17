@@ -7,7 +7,7 @@ function Navbar() {
 
       <div className="max-w-6xl mx-auto px-6 py-3 flex items-center gap-6">
 
-        {/* Logo */}
+        {/* LOGO */}
         <Link to="/" className="flex items-center shrink-0">
 
           <img
@@ -18,12 +18,12 @@ function Navbar() {
 
         </Link>
 
-        {/* Barra de pesquisa */}
+        {/* BARRA DE PESQUISA */}
         <div className="flex-1 flex justify-center">
 
           <div className="relative w-full max-w-lg">
 
-            {/* Ícone de lupa */}
+            {/* LUPA */}
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">
               🔍
             </span>

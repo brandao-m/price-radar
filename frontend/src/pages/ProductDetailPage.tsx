@@ -90,7 +90,7 @@ function ProductDetailPage() {
 
 )}
 
-      <div className="mx-auto mt-10 max-w-3xl">
+      <div className="mt-10">
 
   <div className="bg-white p-4 rounded-xl shadow">
     <PriceChart data={history} />
