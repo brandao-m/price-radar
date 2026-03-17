@@ -25,7 +25,10 @@ function PriceChart({ data }: Props) {
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data}>
 
-          <XAxis dataKey="date" />
+          <XAxis 
+          dataKey="date" 
+          tickFormatter={formatDate}
+          />
 
           <YAxis />
 
@@ -43,6 +46,10 @@ function PriceChart({ data }: Props) {
 
     </div>
     )
+}
+
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString('pt-BR')
 }
 
 export default PriceChart

@@ -5,6 +5,7 @@ import MainLayout from "../layouts/MainLayout"
 
 import PriceChart from "../components/PriceChart"
 import StoresList from "../components/StoresList"
+import ShareButtons from "../components/ShareButtons"
 
 import { getPriceHistory } from "../services/pricesService"
 import { getStorePrices } from "../services/storesService"
@@ -87,6 +88,7 @@ function ProductDetailPage() {
 
       <div className="mt-6">
         <StoresList stores={stores} />
+        <ShareButtons />
       </div>
 
     </div>
@@ -95,21 +97,39 @@ function ProductDetailPage() {
 
 )}
 
-      <PriceChart data={history} />
-      
       <div className="grid md:grid-cols-2 gap-6 mt-10">
+
+  <div className="bg-white p-4 rounded-xl shadow">
+    <PriceChart data={history} />
+  </div>
 
   {stats && (
 
-    <div className="bg-white p-4 rounded-xl shadow">
+    <div className="bg-white p-6 rounded-xl shadow flex flex-col justify-center">
 
-      <h2 className="text-lg font-semibold mb-2">
+      <h2 className="text-lg font-semibold mb-4">
         Análise de preço
       </h2>
 
-      <p>Preço atual: {formatPrice(stats.current_price)}</p>
-      <p>Média histórica: {formatPrice(stats.current_price)}</p>
-      <p>Status: {stats.price_status}</p>
+      <p className="text-sm text-slate-500">
+        Menor preço histórico
+      </p>
+
+      <p className="text-xl font-bold">
+        {formatPrice(stats.lowest_price)}
+      </p>
+
+      <p className="text-sm text-slate-500 mt-3">
+        Média
+      </p>
+
+      <p className="text-lg font-semibold">
+        {formatPrice(stats.average_price)}
+      </p>
+
+      <p className="mt-4 text-green-600 font-medium">
+        {stats.price_status}
+      </p>
 
     </div>
 
