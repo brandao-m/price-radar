@@ -1,7 +1,8 @@
 # Radar de Preços
 Aplicação web de comparação de preços com histórico inteligente, desenvolvida com foco em performance, organização e experiência do usuário.
 
-O projeto simula o funcionamento de plataformas como Zoom/Buscapé, permitindo visualizar ofertas de diferentes lojas e acompanhar a variação de preços ao longo do tempo.
+O projeto simula o funcionamento de plataformas como Zoom/Buscapé, permitinndo visualizar ofertas de diferentes lojas e acompanhar a variação de preços ao longo do tempo.
+
 ---
 
 ## Funcionalidades
@@ -14,12 +15,11 @@ O projeto simula o funcionamento de plataformas como Zoom/Buscapé, permitindo v
 
 ---
 
-## Preview
 ### Página inicial
-![Home](./frontend/public/screenshots/home.png)
+![HOME](./screenshots/home.png)
 
 ### Página do produto
-![Produto](./frontend/public/screenshots/product.png)
+![PRODUTO](./screenshots/product.png)
 
 ---
 
@@ -63,5 +63,4 @@ Projeto desenvolvido com foco em:
 ---
 
 # Autor
-Marcus Brandão
-Desenvolvedor Backend com foco em Python e construção de APIs REST.
+Marcus Brandão - Desenvolvedor Backend com foco em Python e construção de APIs REST.
